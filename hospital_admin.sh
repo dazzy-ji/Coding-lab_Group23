@@ -1,4 +1,5 @@
 #!/bin/bash
+
 initialize_system() {
 	if [ -d "active_logs" ]; then
 		echo "Directory 'active_logs' already exists"
@@ -24,3 +25,5 @@ initialize_system() {
 		echo "Directory 'reports' has been created"
 	fi
 }
+
+initialize_system
