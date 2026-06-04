@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# The function initialize_system is  created
 initialize_system() {
+	# Checks if the active_logs directory is exists
 	if [ -d "active_logs" ]; then
 		echo "Directory 'active_logs' already exists"
 	else
@@ -9,6 +11,7 @@ initialize_system() {
 		echo "Directory 'active_logs' has been created"
 	fi
 
+	# Checks if the archived_logs directory is exists
 	if [ -d "archived_logs" ]; then
 		echo "Directory 'archived_logs' already exists"
 	else
@@ -17,6 +20,7 @@ initialize_system() {
 		echo "Directory 'archived_logs' has been created"
 	fi
 
+	# Checks if the reports directory exists
 	if [ -d "reports" ]; then
 		echo "Directory 'reports' already exists"
 	else
@@ -26,4 +30,5 @@ initialize_system() {
 	fi
 }
 
+# The function initialize_sytem is called
 initialize_system
