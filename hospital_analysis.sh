@@ -19,6 +19,7 @@ water_audit(){
                         count++;
                 }
         }
+	#here i declared sum and count with initial values of zero, then used if to check row two where there is ICU_WATER_RESERVE, after that it adds every ltr of water used in that category.
         END {
                 if (count > 0) {
                         average = sum / count;
@@ -29,10 +30,21 @@ water_audit(){
                 } else {
                         printf "No records found for %s./n", "ICU_WATER_RESERVE"
                 }
+		#this is a an if that checks wether the count moved then it calculates the average, if so then it outputs a summary using printf
         }
         ' "$data_file"
         }
 process_vitals(){
+if [[ ! -f "$reports" ]]; then
+                echo "Error: Reports not found."
+		echo "Creating reports"
+		mkdir reports
+fi
+if [[ ! -f "$critical_alerts.txt" ]]; then
+                echo "Error: critical_alerts.txt not found."
+                echo "Creating critical_alerts.txt"
+		touch reports/critical_alerts.txt
+fi
 #grep to search for CRITICAL row in heart_rate_logs, and awk to get TIMESTAMP, Device_id and value based on how they are organised ($1 for time, $2 for device id and $3 for value, and then save them into reports/critical_alerts
 grep "CRITICAL" active_logs/heart_rate_log.log | awk -F '|' '{print $1, $2, $3}' >> reports/critical_alerts.txt
 #grep to search for CRITICAL row in temperature_logs, and awk to get TIMESTAMP, Device_id and value based on how they are organised ($1 for time, $2 for device id and 3 for value and then append them into reports/critical_alerts.txt
