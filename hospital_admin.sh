@@ -12,6 +12,6 @@ echo "Current permissions:"
 # Display updated directory permissions
 ls -ld active_logs 
 
-echo "Permissions updated successfully."
+echo "Hospital log permissions updated successfully."
 
 }
