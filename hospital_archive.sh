@@ -1,5 +1,10 @@
 #!/bin/bash
 archive_logs(){
+#condition to check if there is a directory called archived_logs and create it.
+if [[ ! -f "archived_logs" ]]; then
+mkdir archived_logs
+fi
+
 #initializing a variable to store current timestamp
 TIMESTAMP=$(date +"%Y%m%d_%H%M")
 #for to move all files from active_logs to archived_logs
@@ -8,8 +13,9 @@ for file in active_logs/*.log; do
 BASENAME=$(basename "$file" .log)
 #move files from active_logs into archived_logs and add a timestamp on the name
 mv "$file" "archived_logs/${BASENAME}_${TIMESTAMP}.log"
-#create new files in active_logs  
+#create new files in active_logs
 touch "active_logs/${BASENAME}.log"
+echo "Files have been moved"
 done
 }
 archive_logs
